@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <context id="ProlinkliContext" targetRuntime="MyBatis3">
+
+
+		<!-- Plugins -->
+		<plugin type="com.prolinkli.framework.db.plugin.DbExamplePlugin"/>
+
+		<jdbcConnection driverClass="${jdbc.driverClass}"
+										connectionURL="${jdbc.url}"
+										userId="${jdbc.userId}"
+										password="${jdbc.password}" />
+
+    <javaModelGenerator targetPackage="com.prolinkli.core.app.db.model.generated"
+												targetProject="src/main/java"
+                        >
+			<property name="rootClass" value="com.prolinkli.framework.db.base.DbModel"/>
+		</javaModelGenerator>
+
+
+		<sqlMapGenerator 
+				targetPackage="mapper.generated"
+				targetProject="src/main/resources"/>
+
+
+    <javaClientGenerator type="XMLMAPPER"
+    										 targetPackage="com.prolinkli.core.app.db.mapper.generated"
+                         targetProject="src/main/java"
+                         />
+
+
+    <table tableName="users"
+           schema="public"
+           domainObjectName="UserDb">
+      <generatedKey column="id" sqlStatement="JDBC" identity="true" />
+      <columnOverride column="id" isGeneratedAlways="true" />
+      <columnOverride column="created_at" isGeneratedAlways="true" />
+      <columnOverride column="updated_at" isGeneratedAlways="true" />
+    </table>
+
+    <!-- Example: generate for a table called 'users' -->
+    <!--
+
+
+		<table tableName="lk_user_authentication_methods"
+           schema="public"
+           domainObjectName="LkUserAuthenticationMethodDb" />
+
+		<table tableName="user_passwords"
+           schema="public"
+           domainObjectName="UserPasswordDb" />
+
+		<table tableName="build_info"
+					 schema="public"
+					 domainObjectName="BuildInfoDb" />
+
+		<table tableName="jwt_tokens"
+					 schema="public"
+					 domainObjectName="JwtTokenDb" />
+           
+    -->
+
+
+  </context>
+</generatorConfiguration>
