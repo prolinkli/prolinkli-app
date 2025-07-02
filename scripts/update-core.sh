@@ -21,9 +21,9 @@ if ! git diff-index --quiet HEAD --; then
 fi
 
 echo ""
-echo "📱 Updating frontend core (angular-core)..."
+echo "📱 Updating frontend core (prolinkli-angular-core)..."
 echo "----------------------------------------"
-if git subtree pull --prefix=frontend angular-core main --squash; then
+if git subtree pull --prefix=frontend prolinkli-angular-core main --squash; then
     echo "✅ Frontend core updated successfully"
 else
     echo "❌ Frontend core update failed"
@@ -32,9 +32,9 @@ else
 fi
 
 echo ""
-echo "⚡ Updating backend core (java-core)..."
+echo "⚡ Updating backend core (prolinkli-java-core)..."
 echo "----------------------------------------"
-if git subtree pull --prefix=backend java-core main --squash; then
+if git subtree pull --prefix=backend prolinkli-java-core main --squash; then
     echo "✅ Backend core updated successfully"
 else
     echo "❌ Backend core update failed"
