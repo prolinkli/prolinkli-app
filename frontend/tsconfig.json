@@ -1,0 +1,53 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "paths": {
+      "@features/home": [
+        "./dist/features/home"
+      ],
+      "@features/homepage": [
+        "./dist/features/homepage"
+      ],
+      "@features/login": [
+        "./dist/features/login"
+      ],
+      "@pli-feature/*": [
+        "./src/app/features/*/src"
+      ],
+      "@pli-shared/*": [
+        "./src/app/shared/*/src"
+      ],
+      "@shared/pli-ui": [
+        "./dist/shared/pli-ui"
+      ],
+      "test-feature": [
+        "./dist/test-feature"
+      ],
+      "test-schematic": [
+        "./dist/test-schematic"
+      ]
+    },
+    "outDir": "./dist/out-tsc",
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022"
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}
