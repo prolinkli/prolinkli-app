@@ -1,0 +1,51 @@
+version: '3.9'
+
+services:
+  postgres:
+    container_name: prolinkli_core_db
+    image: postgres:latest
+    restart: always
+    tty: true
+    ports:
+      - "6543:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: prolinkli
+    volumes:
+      - prolinkli_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: prolinkli_backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: develop
+      # Add other env vars or secrets as needed
+    ports:
+      - "8080:8080"
+    # volumes, command, etc. can be added as needed
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: prolinkli_frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+    # Optionally, add volumes for static files if needed
+
+volumes:
+  prolinkli_pgdata: 
