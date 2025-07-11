@@ -1,19 +1,22 @@
 @forward "./shadows/shadow";
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 // Core theming variables
 
 // Neutral colors
 $white: #ffffff;
 $gray-100: #f8f9fa;
 $gray-150: #F5F5F5;
+$gray-175: #ececec;
 $gray-200: #e9ecef;
 $gray-300: #dee2e6;
 $gray-325: #dddddd;
+$gray-330: #d7d7d7;
 $gray-350: #d6d6d6;
+$gray-375: #d2d2d2;
 $gray-400: #ced4da;
 $gray-500: #adb5bd;
 $gray-600: #6c757d;
-$gray-650: #ececec;
+$gray-625: #646464;
+$gray-650: #5A5A5A;
 $gray-700: #495057;
 $gray-800: #343a40;
 $gray-900: #212529;
@@ -33,6 +36,7 @@ $red-500: #DC3545;
 
 $yellow-500: #FFC107;
 
+$blue-350: #6FC6FD;
 $blue-500: #007BFF;
 
 $black: #000000;
