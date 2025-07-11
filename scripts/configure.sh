@@ -40,8 +40,8 @@ echo "📡 Setting up git remotes..."
 echo "----------------------------------------"
 
 # Add core repository remotes
-add_remote_if_not_exists "prolinkli-angular-core" "https://github.com/prolinkli/prolinkli-angular-core"
-add_remote_if_not_exists "prolinkli-java-core" "https://github.com/prolinkli/prolinkli-java-core"
+add_remote_if_not_exists "angular-core" "https://github.com/prolinkli/prolinkli-angular-core.git"
+add_remote_if_not_exists "java-core" "https://github.com/prolinkli/prolinkli-java-core.git"
 
 echo ""
 echo "🔍 Verifying configuration..."
@@ -56,7 +56,7 @@ echo "🎯 Testing remote connectivity..."
 echo "----------------------------------------"
 
 # Test if remotes are accessible
-for remote in "prolinkli-angular-core" "prolinkli-java-core"; do
+for remote in "angular-core" "java-core"; do
     echo -n "   Testing $remote... "
     if git ls-remote "$remote" HEAD >/dev/null 2>&1; then
         echo "✅ OK"
