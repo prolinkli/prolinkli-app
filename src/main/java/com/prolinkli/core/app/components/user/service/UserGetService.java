@@ -3,7 +3,6 @@ package com.prolinkli.core.app.components.user.service;
 import java.math.BigInteger;
 
 import com.prolinkli.core.app.Constants;
-import com.prolinkli.core.app.components.user.model.AuthorizedUser;
 import com.prolinkli.core.app.components.user.model.User;
 import com.prolinkli.core.app.components.user.model.UserPassword;
 import com.prolinkli.core.app.db.model.generated.UserDb;
@@ -11,7 +10,7 @@ import com.prolinkli.core.app.db.model.generated.UserDbExample;
 import com.prolinkli.core.app.db.model.generated.UserPasswordDb;
 import com.prolinkli.framework.db.dao.Dao;
 import com.prolinkli.framework.db.dao.DaoFactory;
-import com.prolinkli.framework.jwt.service.JwtGetService;
+import com.prolinkli.framework.exception.exceptions.model.ResourceNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,8 +42,7 @@ public class UserGetService {
 
     UserDb userDb = dao.select(userId);
     if (userDb == null) {
-      // FIX: throw new ResourceNotFoundException when implemented
-      throw new IllegalArgumentException("User not found with ID: " + userId);
+      throw new ResourceNotFoundException("User not found with ID: " + userId);
     }
 
     User user = new User();
@@ -64,8 +62,7 @@ public class UserGetService {
     example.createCriteria().andUsernameEqualTo(username);
     UserDb userDb = dao.select(example).stream().findFirst().orElse(null);
     if (userDb == null) {
-      // FIX: throw new ResourceNotFoundException when implemented
-      throw new IllegalArgumentException("User not found with username: " + username);
+      throw new ResourceNotFoundException("User not found with username: " + username);
     }
 
     User user = new User();
@@ -82,14 +79,12 @@ public class UserGetService {
 
     User user = getUserByUsername(username);
     if (user == null) {
-      // FIX: throw new ResourceNotFoundException when implemented
-      throw new IllegalArgumentException("User not found with username: " + username);
+      throw new ResourceNotFoundException("User not found with username: " + username);
     }
 
     UserPasswordDb userPasswordDb = userPasswordDao.select(user.getId());
     if (userPasswordDb == null) {
-      // FIX: throw new ResourceNotFoundException when implemented
-      throw new IllegalArgumentException("User password not found for username: " + username);
+      throw new ResourceNotFoundException("User password not found for username: " + username);
     }
 
     UserPassword userPassword = new UserPassword();
@@ -111,14 +106,12 @@ public class UserGetService {
 
     User user = getUserById(userId);
     if (user == null) {
-      // FIX: throw new ResourceNotFoundException when implemented
-      throw new IllegalArgumentException("User not found with ID: " + userId);
+      throw new ResourceNotFoundException("User not found with ID: " + userId);
     }
 
     UserPasswordDb userPasswordDb = userPasswordDao.select(userId.longValue());
     if (userPasswordDb == null) {
-      // FIX: throw new ResourceNotFoundException when implemented
-      throw new IllegalArgumentException("User password not found for ID: " + userId);
+      throw new ResourceNotFoundException("User password not found for ID: " + userId);
     }
 
     UserPassword userPassword = new UserPassword();
