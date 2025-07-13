@@ -1,0 +1,39 @@
+name: Frontend Develop CI/CD
+
+on:
+  push:
+    branches: [develop]
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./frontend
+
+      - name: Run tests
+        run: npm test -- --watch=false --browsers=ChromeHeadless
+        working-directory: ./frontend
+
+      - name: Build Angular app
+        run: npm run build -- --configuration production
+        working-directory: ./frontend
+
+      - name: Deploy dist/ to server via rsync
+        uses: burnett01/rsync-deployments@v2.0.0
+        with:
+          switches: -avz --delete
+          path: ./frontend/dist/
+          remote_path: /var/www/develop/
+          remote_host: ${{ secrets.SERVER_HOST }}
+          remote_user: ${{ secrets.SERVER_USER }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }} 
